@@ -168,7 +168,7 @@ class SlicingSpec:
     result.append(')')
     return '\n'.join(result)
 
-
+# 攻击类型
 class AttackType(enum.Enum):
   """An enum define attack types."""
   LOGISTIC_REGRESSION = 'lr'
@@ -179,7 +179,7 @@ class AttackType(enum.Enum):
   THRESHOLD_ENTROPY_ATTACK = 'threshold-entropy'
 
   @property
-  def is_trained_attack(self):
+  def is_trained_attack(self): # 不在下面两个攻击算法里就是需要train模型的attack
     """Returns whether this type of attack requires training a model."""
     # Compare by name instead of the variable itself to support module reload.
     return self.name not in (AttackType.THRESHOLD_ATTACK.name,
@@ -847,7 +847,7 @@ class SingleAttackResult:
 
 
 @dataclasses.dataclass
-class SingleMembershipProbabilityResult:
+class SingleMembershipProbabilityResult: # Systematic Evaluation of Privacy Risks of Machine Learning Models
   """Results from computing membership probabilities (denoted as privacy risk score in https://arxiv.org/abs/2003.10595).
 
   this part shows how to leverage membership probabilities to perform attacks
